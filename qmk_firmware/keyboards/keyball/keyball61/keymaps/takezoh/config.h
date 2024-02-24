@@ -33,6 +33,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #    define RGBLIGHT_EFFECT_TWINKLE
 #endif
 
-#define TAP_CODE_DELAY 5
 #define DYNAMIC_KEYMAP_LAYER_COUNT 7
-/* #define DYNAMIC_KEYMAP_MACRO_EEPROM_ADDR 0 */
+
+#define TAP_CODE_DELAY 5
+#define TAPPING_TERM 175
+#define TAPPING_TERM_PER_KEY
+#define PERMISSIVE_HOLD
+/* #define HOLD_ON_OTHER_KEY_PRESS */
+#define QUICK_TAP_TERM TAPPING_TERM
+#define QUICK_TAP_TERM_PER_KEY
+
+#define POINTING_DEVICE_AUTO_MOUSE_ENABLE
+#define AUTO_MOUSE_TIME 800
+#define AUTO_MOUSE_THRESHOLD 5
