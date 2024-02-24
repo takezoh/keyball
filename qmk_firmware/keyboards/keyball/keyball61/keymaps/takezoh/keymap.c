@@ -45,34 +45,35 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC   , KC_1     , KC_2     , KC_3     , KC_4     , KC_5     ,                                  KC_6     , KC_7     , KC_8     , KC_9     , KC_0     , KC_MINS  ,
     KC_TAB   , KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                                  KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     , KC_MINS  ,
  LCTL_T(KC_ESC),KC_A    , KC_S     , KC_D     , KC_F     , KC_G     ,                                  KC_H     , KC_J     , KC_K     , KC_L     , KC_SCLN  , RCTL_T(KC_QUOT) ,
- TD(X_LSFT_LAYER),KC_Z  , KC_X     , KC_C     , KC_V     , KC_B     , _______  ,            _______  , KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  , KC_RSFT  ,
+ /* TD(X_LSFT_LAYER),KC_Z  , KC_X     , KC_C     , KC_V     , KC_B     , _______  ,            _______  , KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  , KC_RSFT  , */
+ LSFT_T(KC_LCTL),KC_Z  , KC_X     , KC_C     , KC_V     , KC_B     , _______  ,            _______  , KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  , KC_RSFT  ,
  _______,_______,KC_LALT,MO(L_GUI),TD(X_LANG_EX),LT(L_MOD,KC_SPC),LT(L_FN,KC_ESC),/**/LT(L_FN,KC_BSPC),LT(L_MOD,KC_ENT), _______  , _______  , _______  , KC_RALT  , _______
   ),
 	// shift
-  [L_SFT] = LAYOUT_universal(
-    S(KC_ESC), S(KC_1)  , KC_LBRC  , S(KC_3)  , S(KC_4)  , S(KC_5)  ,                                  KC_EQL   , S(KC_6)  ,S(KC_QUOT), S(KC_8)  , S(KC_9)  ,S(KC_INT1),
-    S(KC_TAB), S(KC_Q)  , S(KC_W)  , S(KC_E)  , S(KC_R)  , S(KC_T)  ,                                  S(KC_Y)  , S(KC_U)  , S(KC_I)  , S(KC_O)  , S(KC_P)  ,S(KC_MINS),
-    S(KC_LCTL),S(KC_A)  , S(KC_S)  , S(KC_D)  , S(KC_F)  , S(KC_G)  ,                                  S(KC_H)  , S(KC_J)  , S(KC_K)  , S(KC_L)  ,S(KC_SCLN),S(KC_QUOT),
-    _______  , S(KC_Z)  , S(KC_X)  , S(KC_C)  , S(KC_V)  , S(KC_B)  , _______  ,            _______  , S(KC_N)  , S(KC_M)  ,S(KC_COMM), S(KC_DOT),S(KC_SLSH), KC_NUHS  ,
-    _______  , _______  ,S(KC_LALT),S(KC_LGUI), _______  , S(KC_SPC), S(KC_ESC),            KC_DEL   , KC_BSPC  , _______  ,S(KC_RGUI), _______  ,S(KC_RALT), _______
-  ),
+  /* [L_SFT] = LAYOUT_universal( */
+  /*   S(KC_ESC), S(KC_1)  , KC_LBRC  , S(KC_3)  , S(KC_4)  , S(KC_5)  ,                                  KC_EQL   , S(KC_6)  ,S(KC_QUOT), S(KC_8)  , S(KC_9)  ,S(KC_INT1), */
+  /*   S(KC_TAB), S(KC_Q)  , S(KC_W)  , S(KC_E)  , S(KC_R)  , S(KC_T)  ,                                  S(KC_Y)  , S(KC_U)  , S(KC_I)  , S(KC_O)  , S(KC_P)  ,S(KC_MINS), */
+  /*   S(KC_LCTL),S(KC_A)  , S(KC_S)  , S(KC_D)  , S(KC_F)  , S(KC_G)  ,                                  S(KC_H)  , S(KC_J)  , S(KC_K)  , S(KC_L)  ,S(KC_SCLN),S(KC_QUOT), */
+  /*   _______  , S(KC_Z)  , S(KC_X)  , S(KC_C)  , S(KC_V)  , S(KC_B)  , _______  ,            _______  , S(KC_N)  , S(KC_M)  ,S(KC_COMM), S(KC_DOT),S(KC_SLSH), _______  , */
+  /*   _______  , _______  ,S(KC_LALT),S(KC_LGUI), _______  , S(KC_SPC), S(KC_ESC),            KC_DEL   , KC_BSPC  , _______  ,S(KC_RGUI), _______  ,S(KC_RALT), _______ */
+  /* ), */
 	// mod
   [L_MOD] = LAYOUT_universal(
     KC_ESC   , KC_F1    , KC_F2    , KC_SLSH  , S(KC_8)  , _______  ,                                  KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   , KC_F11   ,
-    KC_GRV   , S(KC_1)  , S(KC_2)  , S(KC_3)  , S(KC_4)  , S(KC_5)  ,                                  S(KC_6)  , S(KC_7)  , S(KC_8)  , S(KC_9)  , S(KC_0)  , _______  ,
-    S(KC_GRV), _______  , _______  , _______  , KC_LBRC  , KC_RBRC  ,                                  KC_MINS  , S(KC_EQL), KC_EQL   ,S(KC_NUHS),S(KC_LBRC),S(KC_RBRC),
-    _______  , KC_1     , KC_2     , KC_3     , KC_4     , KC_5     , _______  ,             _______ , KC_6     , KC_7     , KC_8     , KC_9     , KC_0     , _______  ,
-    _______  , _______  , _______  , _______  , KC_LNG1  , KC_SPC   , _______  ,             KC_DEL  , KC_BSPC  , _______  , _______  , _______  , _______  , _______
+    KC_0     , KC_1     , KC_2     , KC_3     , KC_4     , KC_5     ,                                  KC_6     , KC_7     , KC_8     , KC_9     , S(KC_9)  , S(KC_0)  ,
+    KC_GRV   ,S(KC_LBRC),S(KC_RBRC), S(KC_1)  , S(KC_2)  , S(KC_4)  ,                                  S(KC_EQL), KC_EQL   , S(KC_8)  , KC_MINS  ,S(KC_SCLN),S(KC_QUOT),
+    S(KC_GRV), XXXXXXX  , KC_LBRC  , KC_RBRC  , S(KC_3)  , S(KC_5)  , _______  ,             _______ , S(KC_6)  , S(KC_7)  ,S(KC_COMM), S(KC_DOT),S(KC_NUHS), KC_NUHS  ,
+    _______  , _______  ,A(KC_MINS), A(KC_EQL), KC_LNG1  , KC_SPC   , _______  ,             KC_DEL  , KC_BSPC  , _______  , _______  , _______  , _______  , _______
   ),
 	// fn/num
   [L_FN] = LAYOUT_universal(
 	  S(KC_ESC), KC_F1    , KC_F2    , KC_F3    , KC_F4    , KC_F5    ,                                  KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   , KC_F11   ,
-    KC_F1    ,  KC_F2   , KC_7     , KC_8     , KC_9     , KC_MINS  ,                                  KC_PGUP  , _______  , KC_UP    , _______  , KC_F7    , KC_F8    ,
-    KC_F3    ,  KC_F4   , KC_4     , KC_5     , KC_6     , S(KC_EQL),                                  KC_PGDN  , KC_LEFT  , KC_DOWN  , KC_RGHT  , KC_F9    , KC_F10   ,
-    KC_F5    ,  KC_F6   , KC_1     , KC_2     , KC_3     , KC_ENT   , _______  ,            _______  , KC_SLSH  , S(KC_8)  , KC_EQL   , _______  , KC_F11   , KC_F12   ,
-    _______  , _______  , KC_0     , KC_DOT   , _______  , _______  , _______  ,            _______  , _______  , _______  , _______  , _______  , _______  , _______
+    KC_F1    ,  KC_F2   , KC_P7    , KC_P8    , KC_P9    , KC_BSPC  ,                                  KC_PGUP  , _______  , KC_UP    , _______  , KC_F7    , KC_F8    ,
+    KC_F3    ,  KC_F4   , KC_P4    , KC_P5    , KC_P6    , KC_PMNS  ,                                  KC_PGDN  , KC_LEFT  , KC_DOWN  , KC_RGHT  , KC_F9    , KC_F10   ,
+    KC_F5    ,  KC_F6   , KC_P1    , KC_P2    , KC_P3    , KC_PPLS  , _______  ,            _______  , _______  , _______  , _______  , _______  , KC_F11   , KC_F12   ,
+    _______  , _______  , KC_P0    , KC_PDOT  , KC_PSLS  , KC_PAST  , KC_PENT  ,            _______  , _______  , _______  , _______  , _______  , _______  , _______
   ),
-	// meta
+	// meta (windows)
   [L_GUI] = LAYOUT_universal(
     G(KC_ESC), G(KC_1)  , KC_LBRC  , G(KC_3)  , G(KC_4)  , G(KC_5)  ,                                  KC_EQL   , G(KC_6)  ,G(KC_QUOT), G(KC_8)  , G(KC_9)  ,G(KC_INT1),
     G(KC_TAB), G(KC_Q)  , G(KC_W)  , G(KC_E)  , G(KC_R)  , G(KC_T)  ,                                  G(KC_Y)  , G(KC_U)  , G(KC_I)  , G(KC_O)  , G(KC_P)  ,G(KC_INT3),
@@ -95,14 +96,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______  , _______  , _______  , _______  , _______  , _______  ,                                  _______  , _______  , _______  , _______  , _______  , _______  ,
     _______  , _______  , _______  , _______  , _______  , _______  ,                                  _______  , _______  , _______  , _______  , _______  , _______  ,
     _______  , KC_BTN3  , KC_BTN2  , _______  , KC_BTN1  , _______  ,                                  _______  , KC_BTN1  , _______  , KC_BTN2  , KC_BTN3  , _______  ,
-    MO(L_SFT), _______  , _______  , _______  , _______  , _______  , _______  ,            _______  , _______  , _______  , _______  , _______  , _______  , _______  ,
+    MO(L_SFT), _______  , _______  , _______  , _______  , _______  , _______  ,            _______  , _______  , _______  , _______  , _______  , _______  , KC_RSFT  ,
     _______  , _______  , _______  , _______  , _______  , _______  , _______  ,          A(KC_LEFT),A(KC_RIGHT), _______  , _______  , _______  , _______  , _______
   ),
 };
 // clang-format on
 
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+	uint64_t modcode = 0;
+	/* if (IS_QK_MODS(keycode)) { */
+	/* 	modcode = QK_MODS_GET_MODS(keycode); */
+	/* } else */
+	if (IS_QK_MOD_TAP(keycode)) {
+		modcode = QK_MOD_TAP_GET_MODS(keycode);
+	}
+	if ((modcode & (MOD_LSFT | MOD_RSFT)) || (keycode == KC_LSFT || keycode == KC_RSFT)) {
+		keyball_set_scroll_mode(record->event.pressed);
+	}
 	return true;
 }
 
@@ -202,16 +212,16 @@ void pointing_device_init_user(void) {
 #endif
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-#ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
-	bool bScrollMode = get_highest_layer(remove_auto_mouse_layer(state, true)) == L_SFT;
-	if (bScrollMode) {
-		state = remove_auto_mouse_layer(state, false);
-	}
-	set_auto_mouse_enable(!bScrollMode);
-	keyball_set_scroll_mode(bScrollMode);
-#else
-	keyball_set_scroll_mode(get_highest_layer(state) == L_SFT);
-#endif
+/* #ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE */
+/* 	bool bScrollMode = get_highest_layer(remove_auto_mouse_layer(state, true)) == L_SFT; */
+/* 	if (bScrollMode) { */
+/* 		state = remove_auto_mouse_layer(state, false); */
+/* 	} */
+/* 	set_auto_mouse_enable(!bScrollMode); */
+/* 	keyball_set_scroll_mode(bScrollMode); */
+/* #else */
+/* 	keyball_set_scroll_mode(get_highest_layer(state) == L_SFT); */
+/* #endif */
 	return state;
 }
 
