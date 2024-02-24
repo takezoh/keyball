@@ -103,16 +103,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // clang-format on
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-	uint64_t modcode = 0;
-	/* if (IS_QK_MODS(keycode)) { */
-	/* 	modcode = QK_MODS_GET_MODS(keycode); */
-	/* } else */
-	if (IS_QK_MOD_TAP(keycode)) {
-		modcode = QK_MOD_TAP_GET_MODS(keycode);
-	}
-	if ((modcode & (MOD_LSFT | MOD_RSFT)) || (keycode == KC_LSFT || keycode == KC_RSFT)) {
-		keyball_set_scroll_mode(record->event.pressed);
-	}
+	/* uint64_t modcode = 0; */
+	/* dprintf("kc: %d\n", keycode); */
+	/* if (IS_QK_MOD_TAP(keycode)) { */
+	/* 	modcode = QK_MOD_TAP_GET_MODS(keycode); */
+	/* 	dprintf("is qk mod tap, mc: %d\n", modcode); */
+	/* } */
+	/* if ((modcode & MOD_LSFT) || (keycode == KC_LSFT || keycode == KC_RSFT)) { */
+	/* 	dprintf("scroll %d\n", record->event.pressed); */
+	/* 	keyball_set_scroll_mode(record->event.pressed); */
+	/* } */
 	return true;
 }
 
@@ -212,21 +212,20 @@ void pointing_device_init_user(void) {
 #endif
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-/* #ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE */
-/* 	bool bScrollMode = get_highest_layer(remove_auto_mouse_layer(state, true)) == L_SFT; */
-/* 	if (bScrollMode) { */
-/* 		state = remove_auto_mouse_layer(state, false); */
-/* 	} */
-/* 	set_auto_mouse_enable(!bScrollMode); */
-/* 	keyball_set_scroll_mode(bScrollMode); */
-/* #else */
-/* 	keyball_set_scroll_mode(get_highest_layer(state) == L_SFT); */
-/* #endif */
+#ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
+	bool bScrollMode = get_highest_layer(remove_auto_mouse_layer(state, true)) == L_MOD;
+	if (bScrollMode) {
+		state = remove_auto_mouse_layer(state, false);
+	}
+	set_auto_mouse_enable(!bScrollMode);
+	keyball_set_scroll_mode(bScrollMode);
+#else
+	keyball_set_scroll_mode(get_highest_layer(state) == L_MOD);
+#endif
 	return state;
 }
 
 #ifdef OLED_ENABLE
-
 #    include "lib/oledkit/oledkit.h"
 
 void oledkit_render_info_user(void) {
@@ -238,7 +237,14 @@ void oledkit_render_info_user(void) {
 
 void keyboard_post_init_user(void) {
   // Call the post init code.
+	debug_enable = true;
+	debug_matrix = true;
+	debug_keyboard = true;
+	debug_mouse = true;
+
+#ifdef RGBLIGHT_ENABLE
   rgblight_enable_noeeprom(); // enables Rgb, without saving settings
   rgblight_sethsv_noeeprom(180, 255, 255); // sets the color to teal/cyan without saving
   rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING + 3); // sets mode to Fast breathing without saving
+#endif
 }
