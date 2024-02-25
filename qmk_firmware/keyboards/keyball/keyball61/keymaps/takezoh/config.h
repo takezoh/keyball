@@ -38,8 +38,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define TAP_CODE_DELAY 5
 #define TAPPING_TERM 175
 #define TAPPING_TERM_PER_KEY
-#define PERMISSIVE_HOLD
-/* #define HOLD_ON_OTHER_KEY_PRESS */
+/* #define PERMISSIVE_HOLD */
+#define HOLD_ON_OTHER_KEY_PRESS
 #define QUICK_TAP_TERM TAPPING_TERM
 #define QUICK_TAP_TERM_PER_KEY
 
