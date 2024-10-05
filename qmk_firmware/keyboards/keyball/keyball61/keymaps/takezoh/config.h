@@ -43,6 +43,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define QUICK_TAP_TERM TAPPING_TERM
 #define QUICK_TAP_TERM_PER_KEY
 
+#define AUTO_SHIFT_TIMEOUT 200
+#define NO_AUTO_SHIFT_TAB
+#define NO_AUTO_SHIFT_SYMBOLS
+#define NO_AUTO_SHIFT_NUMERIC
+/* #define NO_AUTO_SHIFT_ALPHA */
+
 #define POINTING_DEVICE_AUTO_MOUSE_ENABLE
 #define AUTO_MOUSE_TIME 800
-#define AUTO_MOUSE_THRESHOLD 5
+#define AUTO_MOUSE_THRESHOLD 1

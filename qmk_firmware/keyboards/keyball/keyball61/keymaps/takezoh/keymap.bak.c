@@ -43,8 +43,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [L_DEF] = LAYOUT_universal(
     KC_ESC   , KC_1     , KC_2     , KC_3     , KC_4     , KC_5     ,                                  KC_6     , KC_7     , KC_8     , KC_9     , KC_0     , KC_MINS  ,
     KC_TAB   , KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                                  KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     , KC_MINS  ,
-    KC_LCTL  , KC_A     , KC_S     , KC_D     , KC_F     , KC_G     ,                                  KC_H     , KC_J     , KC_K     , KC_L     , KC_SCLN  , RCTL_T(KC_QUOT),
-    KC_LSFT  , KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     , _______  ,            _______  , KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  , RSFT_T(S(KC_2)),
+LCTL_T(KC_ESC),KC_A     , KC_S     , KC_D     , KC_F     , KC_G     ,                                  KC_H     , KC_J     , KC_K     , KC_L     , KC_SCLN  , RCTL_T(KC_QUOT) ,
+/* LSFT_T(KC_LCTL),KC_Z    , KC_X     , KC_C     , KC_V     , KC_B     , _______  ,            _______  , KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  , RSFT_T(S(KC_2))  , */
+LT(L_SFT,KC_LCTL),KC_Z  , KC_X     , KC_C     , KC_V     , KC_B     , _______  ,            _______  , KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  , RSFT_T(S(KC_2))  ,
  _______,_______,KC_LALT,MO(L_GUI),TD(X_LANG_EX),LT(L_MOD,KC_SPC),LT(L_FN,KC_ESC),/**/LT(L_FN,KC_BSPC),LT(L_MOD,KC_ENT), _______  , _______  , _______  , KC_RALT  , _______
   ),
 	// shift
@@ -102,19 +103,18 @@ LSFT_T(S(KC_GRV)),KC_RBRC,S(KC_RBRC),S(KC_3)  , S(KC_1)  , S(KC_5)  , _______  ,
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
-	/*	case LT(L_SFT,KC_LCTL): // L SHIFT/DEF */
-	/*		if (record->tap.count && record->event.pressed) {*/
-	/*		} else if (!record->event.pressed) {*/
-	/*		}*/
-	/*		break;*/
-		case RSFT_T(S(KC_2)):  // R SHIFT/DEF
+		case LT(L_SFT,KC_LCTL):
+			if (record->tap.count && record->event.pressed) {
+			} else if (!record->event.pressed) {
+			}
+			break;
+		case RSFT_T(S(KC_2)):  // R SHIFT
 			if (record->tap.count && record->event.pressed) {
 				tap_code16(S(KC_2)); // @
 				return false;
 			}
 			break;
-		/*case RCTL_T(KC_QUOT):  // R CTRL*/
-		case RCTL_T(S(KC_QUOT)):  // R CTRL/DEF
+		case RCTL_T(S(KC_QUOT)):  // R CTRL
 			if (record->tap.count && record->event.pressed) {
 				if (layer_state_is(L_DEF)) {
 					tap_code16(KC_QUOT);
@@ -124,12 +124,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 				return false;
 			}
 			break;
-	/*	case LSFT_T(S(KC_GRV)):  // L SHIFT/MOD */
-	/*		if (record->tap.count && record->event.pressed) {*/
-	/*			tap_code16(S(KC_GRV));*/
-	/*			return false;*/
-	/*		}*/
-	/*		break;*/
+		case LSFT_T(S(KC_GRV)):  // L SHIFT
+			if (record->tap.count && record->event.pressed) {
+				tap_code16(S(KC_GRV));
+				return false;
+			}
+			break;
 	}
 	return true;
 }
@@ -220,7 +220,7 @@ void dance_lsft_layer_reset(tap_dance_state_t *state, void *user_data) {
 
 tap_dance_action_t tap_dance_actions[] = {
   [X_LANG_EX] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_lang_ex_finished, dance_lang_ex_reset),
-  /*[X_LSFT_LAYER] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_lsft_layer_finished, dance_lsft_layer_reset)*/
+  [X_LSFT_LAYER] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_lsft_layer_finished, dance_lsft_layer_reset)
 };
 
 #ifdef POINTING_DEVICE_AUTO_MOUSE_ENABLE
